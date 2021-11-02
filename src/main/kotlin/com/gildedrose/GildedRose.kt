@@ -3,65 +3,68 @@ package com.gildedrose
 import java.lang.Integer.max
 import java.lang.Integer.min
 
-class GildedRose(val items: List<Item>) {
+class GildedRose(private val items: List<Item>) {
 
-    fun updateQuality() {
-        items.indices.forEach { i ->
-            val item = items[i]
-            when (item.name) {
-                "Aged Brie" -> {
-                    updateBrie(item)
-                }
-                "Backstage passes to a TAFKAL80ETC concert" -> {
-                    updatePass(item)
-                }
-                "Sulfuras, Hand of Ragnaros" -> {
-                    updateLegend(item)
-                }
-                else -> update(item)
+    fun updateQuality(): List<Item> {
+        return items.map { i -> updateByType(i) }
+    }
+
+    private fun updateByType(item: Item): Item {
+        return when (item.name) {
+            "Aged Brie" -> {
+                updateBrie(item)
             }
+            "Backstage passes to a TAFKAL80ETC concert" -> {
+                updatePass(item)
+            }
+            "Sulfuras, Hand of Ragnaros" -> {
+                updateLegend(item)
+            }
+            else -> update(item)
         }
     }
 
-    private fun updateBrie(item: Item) {
-        item.sellIn = item.sellIn - 1
+    private fun updateBrie(item: Item): Item {
 
-        var qualityAdjustment: Int
-        when {
-            item.sellIn < 0 -> 2
-            else -> 1
-        }.also { qualityAdjustment = it }
-
-        age(item, qualityAdjustment, hasMin = false)
+        return item.copy(
+            sellIn = item.sellIn - 1,
+            quality = determineQuality(item, 1)
+        )
     }
 
-    private fun updatePass(item: Item) {
-        item.sellIn = item.sellIn - 1
+    private fun updatePass(item: Item): Item {
+        val sellIn = item.sellIn - 1
 
-        var qualityAdjustment: Int
-        when {
-            item.sellIn < 0 -> -item.quality
-            item.sellIn <= 5 -> 3
-            item.sellIn <= 10 -> 2
-            else -> 1
-        }.also { qualityAdjustment = it }
+        val qualityAdjustment: Int = if (sellIn < 0) -item.quality
+        else if (sellIn <= 5) 3
+        else if (sellIn <= 10) 2
+        else 1
 
-        age(item, qualityAdjustment)
+        val quality = determineQuality(item, qualityAdjustment)
+        return item.copy(
+            sellIn = sellIn,
+            quality = quality
+        )
     }
 
-    private fun updateLegend(item: Item) { /*do nothing */
+    private fun updateLegend(item: Item): Item { /*do nothing */
+        return item
     }
 
-    private fun update(item: Item) {
+    private fun update(item: Item): Item {
         //tbc - can this be negative? what does that mean ??
-        item.sellIn = item.sellIn - 1
-        age(item, -1)
+        return item.copy(
+            sellIn = item.sellIn - 1,
+            quality = determineQuality(item, -1)
+        )
     }
 
-    private fun age(item: Item, amountToAge: Int, hasMin: Boolean = true, hasMax: Boolean = true) {
-        val quality = min(50, item.quality + amountToAge)
-        if (hasMax) item.quality = min(50, quality)
-        if (hasMin) item.quality = max(0, quality)
+    private fun determineQuality(item: Item, amountToAge: Int, hasMin: Boolean = true, hasMax: Boolean = true): Int {
+        var quality = min(50, item.quality + amountToAge)
+        if (hasMax) quality = min(50, quality)
+        if (hasMin) quality = max(0, quality)
+
+        return quality
     }
 
 }

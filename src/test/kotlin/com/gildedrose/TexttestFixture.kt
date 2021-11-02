@@ -24,15 +24,15 @@ fun updateQualityOf(arrayOfItems: List<Item>) {
     var dayCount = 0
     val app = GildedRose(arrayOfItems)
 
-    var actual = `report days stock`(dayCount, arrayOfItems)
-    if (gigoDayZero == actual) println("day Zero as expected")
+    val zeroDayReport = `report days stock`(dayCount, arrayOfItems)
+    if (gigoDayZero == zeroDayReport) println("day Zero as expected")
 
-    app.updateQuality()
-    actual = `report days stock`(++dayCount, arrayOfItems)
-    if (gigoDayOne == actual) println("day One as expected")
+    val nextDayItems = app.updateQuality()
+    val nextDayReport = `report days stock`(++dayCount, nextDayItems)
+    if (gigoDayOne == nextDayReport) println("day One as expected")
     else {
         println(gigoDayOne)
-        println(actual)
+        println(zeroDayReport)
     }
 }
 

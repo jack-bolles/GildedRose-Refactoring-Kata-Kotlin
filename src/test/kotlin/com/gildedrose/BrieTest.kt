@@ -16,13 +16,11 @@ internal class BrieTest {
         val nextDayPasses = listOf(
             Item("Aged Brie", 1, 1),
             Item("Aged Brie", 0, 1),
-            Item("Aged Brie", -1, 2),
+            Item("Aged Brie", -1, 1),
         )
 
         val app = GildedRose(dayZeroPasses)
-        app.updateQuality()
-        assertEquals(nextDayPasses[0], app.items[0])
-        assertEquals(nextDayPasses[1], app.items[1])
-        assertEquals(nextDayPasses[2], app.items[2])
+        val agedItems = app.updateQuality()
+        assertEquals(nextDayPasses, agedItems)
     }
 }

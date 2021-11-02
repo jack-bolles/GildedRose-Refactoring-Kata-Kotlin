@@ -17,8 +17,7 @@ class ItemTest {
         )
 
         val app = GildedRose(dayZeroPasses)
-        app.updateQuality()
-        Assertions.assertEquals(nextDayPasses[0], app.items[0])
-        Assertions.assertEquals(nextDayPasses[1], app.items[1])
+        val agedItems = app.updateQuality()
+        Assertions.assertEquals(nextDayPasses, agedItems)
     }
 }

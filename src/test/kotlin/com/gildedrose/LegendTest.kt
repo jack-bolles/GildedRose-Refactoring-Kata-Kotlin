@@ -16,7 +16,7 @@ internal class LegendTest {
         )
 
         val app = GildedRose(dayZeroPasses)
-        app.updateQuality()
-        assertEquals(nextDayPasses[0], app.items[0])
+        val agedItems = app.updateQuality()
+        assertEquals(nextDayPasses, agedItems)
     }
 }
