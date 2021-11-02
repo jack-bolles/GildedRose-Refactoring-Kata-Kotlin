@@ -5,57 +5,64 @@ class GildedRose(var items: Array<Item>) {
     fun updateQuality() {
         items.indices.forEach { i ->
             val item = items[i]
-            val name = item.name
-            when (name) {
+            when (item.name) {
                 "Aged Brie" -> {
-                    `better with age`(item)
+                    updateBrie(item)
                 }
                 "Backstage passes to a TAFKAL80ETC concert" -> {
-                    `better with age`(item)
-                    if (item.sellIn < 11) {
-                        `better with age`(item)
-                    }
-
-                    if (item.sellIn < 6) {
-                        `better with age`(item)
-                    }
+                    updatePass(item)
                 }
-                "Sulfuras, Hand of Ragnaros" -> { //do nothing
+                "Sulfuras, Hand of Ragnaros" -> {
+                    updateLegend(item)
                 }
                 else ->
-                    `worse with age`(item)
-            }
-
-            when (name) {
-                "Sulfuras, Hand of Ragnaros" -> {
-                }
-                else -> {
-                    item.sellIn = item.sellIn - 1
-                }
-            }
-
-            if (item.sellIn < 0) {
-                when (name) {
-                    "Backstage passes to a TAFKAL80ETC concert" -> {
-                        item.quality = item.quality - item.quality
-                    }
-                    "Sulfuras, Hand of Ragnaros" -> {
-                    }
-                    "Aged Brie" -> {
-                        `better with age`(item)
-                    }
-                }
+                    update(item)
             }
         }
     }
 
-    private fun `worse with age`(item: Item) {
+    private fun updateBrie(item: Item) {
+        betterWithAge(item)
+        item.sellIn = item.sellIn - 1
+        if (item.sellIn < 0) {
+            betterWithAge(item)
+        }
+    }
+
+    private fun updatePass(item: Item) {
+        betterWithAge(item)
+        if (item.sellIn < 11) {
+            betterWithAge(item)
+        }
+        if (item.sellIn < 6) {
+            betterWithAge(item)
+        }
+
+        item.sellIn = item.sellIn - 1
+
+        if (item.sellIn < 0) {
+            item.quality = item.quality - item.quality
+        }
+    }
+
+    private fun updateLegend(item: Item) { /*do nothing */
+    }
+
+    private fun update(item: Item) {
+        worseWithAge(item)
+
+        //tbc - can this be negative? what does that mean ??
+        item.sellIn = item.sellIn - 1
+
+    }
+
+    private fun worseWithAge(item: Item) {
         if (item.quality > 0) {
             item.quality = item.quality - 1
         }
     }
 
-    private fun `better with age`(item: Item) {
+    private fun betterWithAge(item: Item) {
         if (item.quality < 50) {
             item.quality = item.quality + 1
         }

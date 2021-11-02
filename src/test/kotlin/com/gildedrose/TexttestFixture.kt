@@ -30,6 +30,10 @@ fun updateQualityOf(arrayOfItems: Array<Item>) {
     app.updateQuality()
     actual = `report days stock`(++dayCount, arrayOfItems)
     if (gigoDayOne == actual) println("day One as expected")
+    else {
+        println(gigoDayOne)
+        println(actual)
+    }
 }
 
 private fun `report days stock`(dayCount: Int, items: Array<Item>): String {
