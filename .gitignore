@@ -4,6 +4,8 @@ out/
 
 *.iml
 
+**/.DS_Store
+
 # Created by https://www.gitignore.io/api/gradle
 
 ### Gradle ###
