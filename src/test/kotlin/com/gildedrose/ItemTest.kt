@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test
 class ItemTest {
     @Test
     fun `quality cant exceed 50`() {
-        val dayZeroPasses = arrayOf(
+        val dayZeroPasses = listOf(
             Item("Backstage passes to a TAFKAL80ETC concert", 10, 50),
             Item("Aged Brie", 2, 50),
         )
 
-        val nextDayPasses = arrayOf(
+        val nextDayPasses = listOf(
             Item("Backstage passes to a TAFKAL80ETC concert", 9, 50),
             Item("Aged Brie", 1, 50),
         )

@@ -7,13 +7,13 @@ internal class BrieTest {
 
     @Test
     fun `brie quality doubles after sell by`() {
-        val dayZeroPasses = arrayOf(
+        val dayZeroPasses = listOf(
             Item("Aged Brie", 2, 0),
             Item("Aged Brie", 1, 0),
             Item("Aged Brie", 0, 0),
         )
 
-        val nextDayPasses = arrayOf(
+        val nextDayPasses = listOf(
             Item("Aged Brie", 1, 1),
             Item("Aged Brie", 0, 1),
             Item("Aged Brie", -1, 2),

@@ -4,9 +4,9 @@ fun main(args: Array<String>) {
     updateQualityOf(gigo)
 }
 
-private val gigo: Array<Item>
+private val gigo: List<Item>
     get() {
-        return arrayOf(
+        return listOf(
             Item("+5 Dexterity Vest", 10, 20),
             Item("Aged Brie", 2, 0),
             Item("Elixir of the Mongoose", 5, 7),
@@ -20,7 +20,7 @@ private val gigo: Array<Item>
         )
     }
 
-fun updateQualityOf(arrayOfItems: Array<Item>) {
+fun updateQualityOf(arrayOfItems: List<Item>) {
     var dayCount = 0
     val app = GildedRose(arrayOfItems)
 
@@ -36,7 +36,7 @@ fun updateQualityOf(arrayOfItems: Array<Item>) {
     }
 }
 
-private fun `report days stock`(dayCount: Int, items: Array<Item>): String {
+private fun `report days stock`(dayCount: Int, items: List<Item>): String {
     return "-------- day $dayCount --------" + "\n" +
             "name, sellIn, quality" + "\n" +
             items.joinToString("\n")

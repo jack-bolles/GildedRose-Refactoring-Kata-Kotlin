@@ -3,7 +3,7 @@ package com.gildedrose
 import java.lang.Integer.max
 import java.lang.Integer.min
 
-class GildedRose(var items: Array<Item>) {
+class GildedRose(val items: List<Item>) {
 
     fun updateQuality() {
         items.indices.forEach { i ->
