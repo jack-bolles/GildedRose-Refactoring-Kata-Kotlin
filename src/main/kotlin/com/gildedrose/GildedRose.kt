@@ -18,8 +18,7 @@ class GildedRose(var items: Array<Item>) {
                 "Sulfuras, Hand of Ragnaros" -> {
                     updateLegend(item)
                 }
-                else ->
-                    update(item)
+                else -> update(item)
             }
         }
     }
@@ -27,14 +26,13 @@ class GildedRose(var items: Array<Item>) {
     private fun updateBrie(item: Item) {
         item.sellIn = item.sellIn - 1
 
+        var qualityAdjustment: Int
         when {
-            item.sellIn < 0 -> {
-                age(item, 2)
-            }
-            else -> {
-                age(item, 1)
-            }
-        }
+            item.sellIn < 0 -> 2
+            else -> 1
+        }.also { qualityAdjustment = it }
+
+        age(item, qualityAdjustment, hasMin = false)
     }
 
     private fun updatePass(item: Item) {
@@ -60,10 +58,10 @@ class GildedRose(var items: Array<Item>) {
         age(item, -1)
     }
 
-    private fun age(item: Item, amountToAge: Int) {
+    private fun age(item: Item, amountToAge: Int, hasMin: Boolean = true, hasMax: Boolean = true) {
         val quality = min(50, item.quality + amountToAge)
-        item.quality = min(50, quality)
-        item.quality = max(0, quality)
+        if (hasMax) item.quality = min(50, quality)
+        if (hasMin) item.quality = max(0, quality)
     }
 
 }

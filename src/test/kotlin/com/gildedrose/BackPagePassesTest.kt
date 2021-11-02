@@ -3,7 +3,26 @@ package com.gildedrose
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class GildedRoseTest {
+internal class BackPagePassesTest {
+
+    @Test
+    fun `brie quality doubles after sell by`() {
+        val dayZeroPasses = arrayOf(
+            Item("Aged Brie", 2, 0),
+            Item("Aged Brie", 1, 0),
+            Item("Aged Brie", 0, 0),
+        )
+
+        val nextDayPasses = arrayOf(
+            Item("Aged Brie", 1, 1),
+            Item("Aged Brie", 0, 1),
+            Item("Aged Brie", -1, 2),
+        )
+
+        val app = GildedRose(dayZeroPasses)
+        app.updateQuality()
+        assertEquals(nextDayPasses[0], app.items[0])
+    }
 
     @Test
     fun `passes quality falls to zero after the concert`() {
@@ -63,20 +82,4 @@ internal class GildedRoseTest {
         assertEquals(nextDayPasses[1], app.items[1])
         assertEquals(nextDayPasses[2], app.items[2])
     }
-
-    @Test
-    fun `quality cant exceed 50`() {
-        val dayZeroPasses = arrayOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 10, 50),
-        )
-
-        val nextDayPasses = arrayOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 9, 50),
-        )
-
-        val app = GildedRose(dayZeroPasses)
-        app.updateQuality()
-        assertEquals(nextDayPasses[0], app.items[0])
-    }
-
 }
