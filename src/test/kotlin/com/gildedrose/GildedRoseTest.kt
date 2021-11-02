@@ -6,18 +6,22 @@ import org.junit.jupiter.api.Test
 internal class GildedRoseTest {
 
     @Test
-    fun foo() {
-        val items = arrayOf(Item("foo", 0, 0))
-        val app = GildedRose(items)
+    fun `passes age to zero after the concert`() {
+        val dayZeroPasses = arrayOf(
+            Item("Backstage passes to a TAFKAL80ETC concert", 0, 50),
+        )
+
+        val nextDayPasses = arrayOf(
+            Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
+        )
+
+        val app = GildedRose(dayZeroPasses)
         app.updateQuality()
-        assertEquals("fixme", app.items[0].name)
+        assertEquals(nextDayPasses[0], app.items[0])
     }
 
-    @Test
-    fun `taking initial fixture output as valid test results`() {
+    //Quality increases by 2 when there are 10 days or less and
+    // by 3 when there are 5 days or less but
 
-    }
 
 }
-
-

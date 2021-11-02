@@ -34,10 +34,10 @@ class GildedRose(var items: Array<Item>) {
         // by 3 when there are 5 days or less but
         //Quality drops to 0 after the concert
         betterWithAge(item)
-        if (item.sellIn < 10) {
+        if (item.sellIn <= 10) {
             betterWithAge(item)
         }
-        if (item.sellIn < 5) {
+        if (item.sellIn <= 5) {
             betterWithAge(item)
         }
 
