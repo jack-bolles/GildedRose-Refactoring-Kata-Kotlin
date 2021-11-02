@@ -30,11 +30,14 @@ class GildedRose(var items: Array<Item>) {
     }
 
     private fun updatePass(item: Item) {
+        //Quality increases by 2 when there are 10 days or less and
+        // by 3 when there are 5 days or less but
+        //Quality drops to 0 after the concert
         betterWithAge(item)
-        if (item.sellIn < 11) {
+        if (item.sellIn < 10) {
             betterWithAge(item)
         }
-        if (item.sellIn < 6) {
+        if (item.sellIn < 5) {
             betterWithAge(item)
         }
 
