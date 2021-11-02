@@ -8,10 +8,12 @@ internal class GildedRoseTest {
     @Test
     fun `passes quality falls to zero after the concert`() {
         val dayZeroPasses = arrayOf(
+            Item("Backstage passes to a TAFKAL80ETC concert", 1, 30),
             Item("Backstage passes to a TAFKAL80ETC concert", 0, 50),
         )
 
         val nextDayPasses = arrayOf(
+            Item("Backstage passes to a TAFKAL80ETC concert", 0, 33),
             Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
         )
 
@@ -29,7 +31,7 @@ internal class GildedRoseTest {
         )
 
         val nextDayPasses = arrayOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 11, 29),
+            Item("Backstage passes to a TAFKAL80ETC concert", 11, 31),
             Item("Backstage passes to a TAFKAL80ETC concert", 10, 32),
             Item("Backstage passes to a TAFKAL80ETC concert", 9, 32),
         )
@@ -44,15 +46,15 @@ internal class GildedRoseTest {
     @Test
     fun `passes quality increases by 3 when there are 5 days or less `() {
         val dayZeroPasses = arrayOf(
+            Item("Backstage passes to a TAFKAL80ETC concert", 7, 30),
             Item("Backstage passes to a TAFKAL80ETC concert", 6, 30),
             Item("Backstage passes to a TAFKAL80ETC concert", 5, 30),
-            Item("Backstage passes to a TAFKAL80ETC concert", 4, 30),
         )
 
         val nextDayPasses = arrayOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 5, 32),
+            Item("Backstage passes to a TAFKAL80ETC concert", 6, 32),
+            Item("Backstage passes to a TAFKAL80ETC concert", 5, 33),
             Item("Backstage passes to a TAFKAL80ETC concert", 4, 33),
-            Item("Backstage passes to a TAFKAL80ETC concert", 3, 33),
         )
 
         val app = GildedRose(dayZeroPasses)
