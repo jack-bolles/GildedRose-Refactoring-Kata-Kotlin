@@ -7,29 +7,23 @@ class GildedRose(var items: Array<Item>) {
             val item = items[i]
             val name = item.name
             when (name) {
-                "Aged Brie" -> if (item.quality < 50) {
-                    item.quality = item.quality + 1
+                "Aged Brie" -> {
+                    `better with age`(item)
                 }
-                "Backstage passes to a TAFKAL80ETC concert" -> if (item.quality < 50) {
-                    item.quality = item.quality + 1
-
+                "Backstage passes to a TAFKAL80ETC concert" -> {
+                    `better with age`(item)
                     if (item.sellIn < 11) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1
-                        }
+                        `better with age`(item)
                     }
 
                     if (item.sellIn < 6) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1
-                        }
+                        `better with age`(item)
                     }
                 }
                 "Sulfuras, Hand of Ragnaros" -> { //do nothing
                 }
-                else -> if (item.quality > 0) {
-                    item.quality = item.quality - 1
-                }
+                else ->
+                    `worse with age`(item)
             }
 
             when (name) {
@@ -48,16 +42,22 @@ class GildedRose(var items: Array<Item>) {
                     "Sulfuras, Hand of Ragnaros" -> {
                     }
                     "Aged Brie" -> {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1
-                        } else {
-                            if (item.quality > 0) {
-                                item.quality = item.quality - 1
-                            }
-                        }
+                        `better with age`(item)
                     }
                 }
             }
+        }
+    }
+
+    private fun `worse with age`(item: Item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1
+        }
+    }
+
+    private fun `better with age`(item: Item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1
         }
     }
 
