@@ -5,9 +5,9 @@ typealias GildedRose = List<Item>
 fun GildedRose.ageStock() = this.map { i -> age(i) }
 
 fun main(args: Array<String>) {
-    val (today, tomorrow) = runReportOnTomorrowsStock(args.map { parseToItem(it) })
-    println(today)
-    println(tomorrow)
+    val items = args.map { parseToItem(it) }
+    println(stockReportFor(items, 0))
+    println(stockReportFor(items.ageStock(), 1))
 }
 
 internal fun parseToItem(parseMe: String): Item {
@@ -19,18 +19,15 @@ internal fun parseToItem(parseMe: String): Item {
     )
 }
 
-fun runReportOnTomorrowsStock(items: List<Item>): Pair<String, String> {
-    var dayCount = 0
-    val zeroDayReport = `report days stock`(dayCount, items)
-    val nextDayReport = `report days stock`(++dayCount, items.ageStock())
-    return Pair(zeroDayReport, nextDayReport)
+fun stockReportFor(items: List<Item>, daysOut: Int): String {
+    return formatHeader(daysOut) + "\n" +
+            formatStock(items)
 }
 
-private fun `report days stock`(dayCount: Int, items: List<Item>): String {
-    return "-------- day $dayCount --------" + "\n" +
-            "name, sellIn, quality" + "\n" +
-            items.joinToString("\n")
-}
+private fun formatStock(items: List<Item>) = items.joinToString("\n")
+
+private fun formatHeader(dayCount: Int) = "-------- day $dayCount --------" +
+        "\n" + "name, sellIn, quality"
 
 
 

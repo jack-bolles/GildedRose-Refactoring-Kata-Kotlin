@@ -1,14 +1,22 @@
 package com.gildedrose
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class AgingReportTest {
     @Test
-    fun `report for a variety of items updates all correctly`() {
-        val (today, tomorrow) = runReportOnTomorrowsStock(gigo)
-        assertEquals(today, gigoDayZero)
-        assertEquals(tomorrow, gigoDayOne)
+    @Disabled("not implemented yet")
+    fun `report _end_of_week updates all correctly`() {
+        //0...4 e.g. running on Monday for Friday's status
+        assertEquals(gigoDayZero, stockReportFor(gigo, 0))
+        assertEquals(gigoDayOne, stockReportFor(gigo.ageStock(), 4))
+    }
+
+    @Test
+    fun `report next day updates all correctly`() {
+        assertEquals(gigoDayZero, stockReportFor(gigo, 0))
+        assertEquals(gigoDayOne, stockReportFor(gigo.ageStock(), 1))
     }
 
     @Test
