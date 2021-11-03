@@ -16,6 +16,6 @@ class ItemTest {
             Item("Aged Brie", 1, 50),
         )
 
-        Assertions.assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
+        Assertions.assertEquals(nextDayPasses, dayZeroPasses.ageStock())
     }
 }

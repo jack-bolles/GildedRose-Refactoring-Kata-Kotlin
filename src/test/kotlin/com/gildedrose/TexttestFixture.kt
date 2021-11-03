@@ -1,16 +1,16 @@
 package com.gildedrose
 
 fun main(args: Array<String>) {
-    updateQualityOf(gigo)
+    runReportOnTomorrowsStock(gigo)
 }
 
-fun updateQualityOf(items: List<Item>) {
+fun runReportOnTomorrowsStock(items: List<Item>) {
     var dayCount = 0
 
     val zeroDayReport = `report days stock`(dayCount, items)
     if (gigoDayZero == zeroDayReport) println("day Zero as expected")
 
-    val nextDayItems = items.updateQuality()
+    val nextDayItems = items.ageStock()
     val nextDayReport = `report days stock`(++dayCount, nextDayItems)
     if (gigoDayOne == nextDayReport) println("day One as expected")
     else {

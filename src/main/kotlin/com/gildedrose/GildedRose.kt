@@ -2,7 +2,7 @@ package com.gildedrose
 
 typealias GildedRose = List<Item>
 
-fun GildedRose.updateQuality() = this.map { i -> updateByType(i) }
+fun GildedRose.ageStock() = this.map { i -> age(i) }
 
 
 

@@ -6,29 +6,29 @@ data class Item(val name: String, val sellIn: Int, val quality: Int) {
     }
 }
 
-fun updateByType(item: Item): Item {
+fun age(item: Item): Item {
     return when (item.name) {
         "Aged Brie" -> {
-            updateBrie(item)
+            ageBrie(item)
         }
         "Backstage passes to a TAFKAL80ETC concert" -> {
-            updatePass(item)
+            agePass(item)
         }
         "Sulfuras, Hand of Ragnaros" -> {
-            updateLegend(item)
+            ageLegend(item)
         }
-        else -> update(item)
+        else -> ageGeneric(item)
     }
 }
 
-private fun updateBrie(item: Item): Item {
+private fun ageBrie(item: Item): Item {
     return item.copy(
         sellIn = item.sellIn - 1,
         quality = determineQuality(item, 1)
     )
 }
 
-private fun updatePass(item: Item): Item {
+private fun agePass(item: Item): Item {
     val sellIn = item.sellIn - 1
 
     val qualityAdjustment: Int = when {
@@ -45,11 +45,11 @@ private fun updatePass(item: Item): Item {
     )
 }
 
-private fun updateLegend(item: Item): Item { /*do nothing */
+private fun ageLegend(item: Item): Item { /*do nothing */
     return item
 }
 
-private fun update(item: Item): Item {
+private fun ageGeneric(item: Item): Item {
     //tbc - can this be negative? what does that mean ??
     return item.copy(
         sellIn = item.sellIn - 1,

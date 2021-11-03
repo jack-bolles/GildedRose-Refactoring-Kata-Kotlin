@@ -15,6 +15,6 @@ internal class LegendTest {
             Item("Sulfuras, Hand of Ragnaros", 0, 80),
         )
 
-        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
+        assertEquals(nextDayPasses, dayZeroPasses.ageStock())
     }
 }

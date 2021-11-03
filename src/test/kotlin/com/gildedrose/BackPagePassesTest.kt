@@ -17,7 +17,7 @@ internal class BackPagePassesTest {
             Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
         )
 
-        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
+        assertEquals(nextDayPasses, dayZeroPasses.ageStock())
     }
 
     @Test
@@ -34,7 +34,7 @@ internal class BackPagePassesTest {
             Item("Backstage passes to a TAFKAL80ETC concert", 9, 32),
         )
 
-        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
+        assertEquals(nextDayPasses, dayZeroPasses.ageStock())
     }
 
     @Test
@@ -51,6 +51,6 @@ internal class BackPagePassesTest {
             Item("Backstage passes to a TAFKAL80ETC concert", 4, 33),
         )
 
-        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
+        assertEquals(nextDayPasses, dayZeroPasses.ageStock())
     }
 }

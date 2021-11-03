@@ -19,6 +19,6 @@ internal class BrieTest {
             Item("Aged Brie", -1, 1),
         )
 
-        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
+        assertEquals(nextDayPasses, dayZeroPasses.ageStock())
     }
 }
