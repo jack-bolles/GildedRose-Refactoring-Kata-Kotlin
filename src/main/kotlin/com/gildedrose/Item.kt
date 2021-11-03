@@ -7,17 +7,17 @@ data class Item(val name: String, val sellIn: Int, val quality: Int) {
 }
 
 fun age(item: Item, daysOut: Int): Item {
-    val sellIn = when (item.name) {
+    return item.copy(
+        sellIn = remainingDaysToSell(item, daysOut),
+        quality = calculateQuality(item, daysOut)
+    )
+}
+
+private fun remainingDaysToSell(item: Item, daysOut: Int): Int {
+    return when (item.name) {
         "Sulfuras, Hand of Ragnaros" -> item.sellIn
         else -> item.sellIn - daysOut
     }
-
-    val quality = calculateQuality(item, daysOut)
-
-    return item.copy(
-        sellIn = sellIn,
-        quality = quality
-    )
 }
 
 private fun calculateQuality(item: Item, daysOut: Int): Int {
