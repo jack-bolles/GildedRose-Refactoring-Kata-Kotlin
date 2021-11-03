@@ -19,8 +19,6 @@ internal class BrieTest {
             Item("Aged Brie", -1, 1),
         )
 
-        val app = GildedRose(dayZeroPasses)
-        val agedItems = app.updateQuality()
-        assertEquals(nextDayPasses, agedItems)
+        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
     }
 }

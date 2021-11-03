@@ -15,8 +15,6 @@ internal class LegendTest {
             Item("Sulfuras, Hand of Ragnaros", 0, 80),
         )
 
-        val app = GildedRose(dayZeroPasses)
-        val agedItems = app.updateQuality()
-        assertEquals(nextDayPasses, agedItems)
+        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
     }
 }

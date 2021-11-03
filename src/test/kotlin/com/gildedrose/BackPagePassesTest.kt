@@ -17,9 +17,7 @@ internal class BackPagePassesTest {
             Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
         )
 
-        val app = GildedRose(dayZeroPasses)
-        val agedItems = app.updateQuality()
-        assertEquals(nextDayPasses, agedItems)
+        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
     }
 
     @Test
@@ -36,9 +34,7 @@ internal class BackPagePassesTest {
             Item("Backstage passes to a TAFKAL80ETC concert", 9, 32),
         )
 
-        val app = GildedRose(dayZeroPasses)
-        val agedItems = app.updateQuality()
-        assertEquals(nextDayPasses, agedItems)
+        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
     }
 
     @Test
@@ -55,8 +51,6 @@ internal class BackPagePassesTest {
             Item("Backstage passes to a TAFKAL80ETC concert", 4, 33),
         )
 
-        val app = GildedRose(dayZeroPasses)
-        val agedItems = app.updateQuality()
-        assertEquals(nextDayPasses, agedItems)
+        assertEquals(nextDayPasses, dayZeroPasses.updateQuality())
     }
 }

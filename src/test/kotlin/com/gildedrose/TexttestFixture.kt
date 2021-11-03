@@ -4,14 +4,13 @@ fun main(args: Array<String>) {
     updateQualityOf(gigo)
 }
 
-fun updateQualityOf(arrayOfItems: List<Item>) {
+fun updateQualityOf(items: List<Item>) {
     var dayCount = 0
-    val app = GildedRose(arrayOfItems)
 
-    val zeroDayReport = `report days stock`(dayCount, arrayOfItems)
+    val zeroDayReport = `report days stock`(dayCount, items)
     if (gigoDayZero == zeroDayReport) println("day Zero as expected")
 
-    val nextDayItems = app.updateQuality()
+    val nextDayItems = items.updateQuality()
     val nextDayReport = `report days stock`(++dayCount, nextDayItems)
     if (gigoDayOne == nextDayReport) println("day One as expected")
     else {
