@@ -18,4 +18,22 @@ class ItemTest {
 
         Assertions.assertEquals(nextDayPasses, dayZeroPasses.ageStock())
     }
+
+    @Test
+    fun `conjured items degrade twice as fast`() {
+        val dayZeroPasses = listOf(
+            Item("Conjured Mana Cake", 2, 4),
+            Item("Conjured Mana Cake", 1, 2),
+            Item("Conjured Mana Cake", 0, 0),
+        )
+
+        val nextDayPasses = listOf(
+            Item("Conjured Mana Cake", 1, 2),
+            Item("Conjured Mana Cake", 0, 0),
+            Item("Conjured Mana Cake", -1, 0),
+        )
+
+        Assertions.assertEquals(nextDayPasses, dayZeroPasses.ageStock())
+
+    }
 }

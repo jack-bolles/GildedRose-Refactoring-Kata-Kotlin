@@ -6,19 +6,17 @@ data class Item(val name: String, val sellIn: Int, val quality: Int) {
     }
 }
 
+//this begs some typing, but at this point we only know that certain behaviours are keyed off of specific string values
 fun age(item: Item): Item {
-    return when (item.name) {
-        "Aged Brie" -> {
-            ageBrie(item)
-        }
-        "Backstage passes to a TAFKAL80ETC concert" -> {
-            agePass(item)
-        }
-        "Sulfuras, Hand of Ragnaros" -> {
-            ageLegend(item)
-        }
-        else -> ageGeneric(item)
-    }
+    return if (item.name == "Aged Brie") {
+        ageBrie(item)
+    } else if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
+        agePass(item)
+    } else if (item.name == "Sulfuras, Hand of Ragnaros") {
+        ageLegend(item)
+    } else if (item.name.startsWith("Conjured")) {
+        ageConjured(item)
+    } else ageGeneric(item)
 }
 
 private fun ageBrie(item: Item): Item {
@@ -49,8 +47,14 @@ private fun ageLegend(item: Item): Item { /*do nothing */
     return item
 }
 
+fun ageConjured(item: Item): Item {
+    return item.copy(
+        sellIn = item.sellIn - 1,
+        quality = determineQuality(item, -2)
+    )
+}
+
 private fun ageGeneric(item: Item): Item {
-    //tbc - can this be negative? what does that mean ??
     return item.copy(
         sellIn = item.sellIn - 1,
         quality = determineQuality(item, -1)
