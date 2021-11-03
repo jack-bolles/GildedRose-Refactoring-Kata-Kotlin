@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test
 
 internal class AgingReportTest {
     @Test
-    @Disabled("not implemented yet")
     fun `report _end_of_week updates all correctly`() {
         //0...4 e.g. running on Monday for Friday's status
         assertEquals(gigoDayZero, stockReportFor(gigo, 0))
@@ -74,17 +73,17 @@ Conjured Mana Cake, 2, 4"""
 
     private val gigoDayFive: String
         get() {
-            return "-------- day 4 --------\n" +
-                    "name, sellIn, quality\n" +
-                    "+5 Dexterity Vest, 6, 16\n" +
-                    "Aged Brie, -2, 4\n" +
-                    "Elixir of the Mongoose, 1, 3\n" +
-                    "Sulfuras, Hand of Ragnaros, 0, 80\n" +
-                    "Sulfuras, Hand of Ragnaros, -1, 80\n" +
-                    "Backstage passes to a TAFKAL80ETC concert, 11, 24\n" +
-                    "Backstage passes to a TAFKAL80ETC concert, 6, 50\n" +
-                    "Backstage passes to a TAFKAL80ETC concert, 1, 50\n" +
-                    "Conjured Mana Cake, -1, 0\n"
+            return """-------- day 4 --------
+name, sellIn, quality
++5 Dexterity Vest, 6, 16
+Aged Brie, -2, 4
+Elixir of the Mongoose, 1, 3
+Sulfuras, Hand of Ragnaros, 0, 80
+Sulfuras, Hand of Ragnaros, -1, 80
+Backstage passes to a TAFKAL80ETC concert, 11, 24
+Backstage passes to a TAFKAL80ETC concert, 6, 50
+Backstage passes to a TAFKAL80ETC concert, 1, 50
+Conjured Mana Cake, -1, 0"""
         }
 
     @Test

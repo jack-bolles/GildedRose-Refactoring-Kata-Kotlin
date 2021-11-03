@@ -18,7 +18,6 @@ internal fun parseToItem(parseMe: String): Item {
 }
 
 fun GildedRose.ageFor(daysOut: Int): List<Item> {
-    if (daysOut != 1) throw NotImplementedError("multiple days still to come")
     return this.map { age(it, daysOut) }
 }
 

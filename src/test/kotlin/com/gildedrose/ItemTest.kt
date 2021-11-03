@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test
 
 internal class ItemTest {
     @Test
-    @Disabled("not implemented yet")
     fun `items age for the correct amount of cycles`() {
         val dayZeroItems = listOf(
             Item("Backstage passes to a TAFKAL80ETC concert", 4, 33),

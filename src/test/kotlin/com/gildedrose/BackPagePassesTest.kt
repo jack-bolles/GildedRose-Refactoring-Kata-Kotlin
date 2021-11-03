@@ -7,9 +7,9 @@ internal class BackPagePassesTest {
 
     @Test
     fun `passes quality falls to zero after the concert`() {
-        val dayZeroPasses = listOf(
+        val dayZero = listOf(
             Item("Backstage passes to a TAFKAL80ETC concert", 1, 30),
-            Item("Backstage passes to a TAFKAL80ETC concert", 0, 50),
+            Item("Backstage passes to a TAFKAL80ETC concert", 0, 30),
         )
 
         val nextDay = listOf(
@@ -17,7 +17,7 @@ internal class BackPagePassesTest {
             Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
         )
 
-        assertEquals(nextDay, dayZeroPasses.ageFor(1))
+        assertEquals(nextDay, dayZero.ageFor(1))
     }
 
     @Test
