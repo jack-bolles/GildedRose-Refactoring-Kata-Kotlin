@@ -3,7 +3,7 @@ package com.gildedrose
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class ItemTest {
+internal class ItemTest {
     @Test
     fun `quality cant exceed 50`() {
         val dayZeroPasses = listOf(
