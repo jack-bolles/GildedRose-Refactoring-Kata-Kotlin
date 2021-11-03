@@ -12,45 +12,45 @@ internal class BackPagePassesTest {
             Item("Backstage passes to a TAFKAL80ETC concert", 0, 50),
         )
 
-        val nextDayPasses = listOf(
+        val nextDay = listOf(
             Item("Backstage passes to a TAFKAL80ETC concert", 0, 33),
             Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
         )
 
-        assertEquals(nextDayPasses, dayZeroPasses.ageStock())
+        assertEquals(nextDay, dayZeroPasses.ageFor(1))
     }
 
     @Test
     fun `passes quality increases by 2 when there are 10 days or less`() {
-        val dayZeroPasses = listOf(
+        val dayZero = listOf(
             Item("Backstage passes to a TAFKAL80ETC concert", 12, 30),
             Item("Backstage passes to a TAFKAL80ETC concert", 11, 30),
             Item("Backstage passes to a TAFKAL80ETC concert", 10, 30),
         )
 
-        val nextDayPasses = listOf(
+        val nextDay = listOf(
             Item("Backstage passes to a TAFKAL80ETC concert", 11, 31),
             Item("Backstage passes to a TAFKAL80ETC concert", 10, 32),
             Item("Backstage passes to a TAFKAL80ETC concert", 9, 32),
         )
 
-        assertEquals(nextDayPasses, dayZeroPasses.ageStock())
+        assertEquals(nextDay, dayZero.ageFor(1))
     }
 
     @Test
     fun `passes quality increases by 3 when there are 5 days or less `() {
-        val dayZeroPasses = listOf(
+        val dayZero = listOf(
             Item("Backstage passes to a TAFKAL80ETC concert", 7, 30),
             Item("Backstage passes to a TAFKAL80ETC concert", 6, 30),
             Item("Backstage passes to a TAFKAL80ETC concert", 5, 30),
         )
 
-        val nextDayPasses = listOf(
+        val nextDay = listOf(
             Item("Backstage passes to a TAFKAL80ETC concert", 6, 32),
             Item("Backstage passes to a TAFKAL80ETC concert", 5, 33),
             Item("Backstage passes to a TAFKAL80ETC concert", 4, 33),
         )
 
-        assertEquals(nextDayPasses, dayZeroPasses.ageStock())
+        assertEquals(nextDay, dayZero.ageFor(1))
     }
 }

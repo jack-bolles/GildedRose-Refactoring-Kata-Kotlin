@@ -7,14 +7,14 @@ internal class LegendTest {
 
     @Test
     fun `legendary items never expire`() {
-        val dayZeroPasses = listOf(
+        val dayZero = listOf(
             Item("Sulfuras, Hand of Ragnaros", 0, 80),
         )
 
-        val nextDayPasses = listOf(
+        val nextDay = listOf(
             Item("Sulfuras, Hand of Ragnaros", 0, 80),
         )
 
-        assertEquals(nextDayPasses, dayZeroPasses.ageStock())
+        assertEquals(nextDay, dayZero.ageFor(1))
     }
 }

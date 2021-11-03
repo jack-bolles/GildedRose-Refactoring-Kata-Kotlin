@@ -6,58 +6,35 @@ data class Item(val name: String, val sellIn: Int, val quality: Int) {
     }
 }
 
-//this begs some typing, but at this point we only know that certain behaviours
-// are keyed off of specific string values
-fun age(item: Item): Item {
-    return if (item.name == "Aged Brie") {
-        ageBrie(item)
-    } else if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
-        agePass(item)
-    } else if (item.name == "Sulfuras, Hand of Ragnaros") {
-        ageLegend(item)
-    } else if (item.name.startsWith("Conjured")) {
-        ageConjured(item)
-    } else ageGeneric(item)
-}
+fun age(item: Item, daysOut: Int): Item {
+    val sellIn = when (item.name) {
+        "Sulfuras, Hand of Ragnaros" -> item.sellIn
+        else -> item.sellIn - daysOut
+    }
 
-private fun ageBrie(item: Item): Item {
-    return item.copy(
-        sellIn = item.sellIn - 1,
-        quality = determineQuality(item.quality, 1)
-    )
-}
+    val quality = calculateQuality(item, daysOut, sellIn)
 
-private fun agePass(item: Item): Item {
-    val sellIn = item.sellIn - 1
     return item.copy(
         sellIn = sellIn,
-        quality = determineQuality(
-            item.quality, when {
-                sellIn < 0 -> -item.quality
-                sellIn <= 5 -> 3
-                sellIn <= 10 -> 2
-                else -> 1
-            }
-        )
+        quality = quality
     )
 }
 
-private fun ageLegend(item: Item): Item { /*do nothing */
-    return item
-}
-
-fun ageConjured(item: Item): Item {
-    return item.copy(
-        sellIn = item.sellIn - 1,
-        quality = determineQuality(item.quality, -2)
+private fun calculateQuality(item: Item, daysOut: Int, sellIn: Int) = when {
+    item.name == "Backstage passes to a TAFKAL80ETC concert" -> determineQuality(
+        item.quality, when {
+            sellIn < 0 -> -item.quality
+            sellIn <= 5 -> 3
+            sellIn <= 10 -> 2
+            else -> 1
+        }
     )
-}
 
-private fun ageGeneric(item: Item): Item {
-    return item.copy(
-        sellIn = item.sellIn - 1,
-        quality = determineQuality(item.quality, -1)
-    )
+    item.name == "Sulfuras, Hand of Ragnaros" -> item.quality
+
+    item.name == "Aged Brie" -> determineQuality(item.quality, daysOut)
+    item.name.startsWith("Conjured") -> determineQuality(item.quality, -2 * daysOut)
+    else -> determineQuality(item.quality, -1 * daysOut)
 }
 
 private fun determineQuality(initialQuality: Int, amountToAge: Int, hasMax: Boolean = true): Int {

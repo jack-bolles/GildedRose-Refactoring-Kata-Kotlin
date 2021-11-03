@@ -5,7 +5,7 @@ typealias GildedRose = List<Item>
 fun main(args: Array<String>) {
     val items = args.map { parseToItem(it) }
     println(stockReportFor(items, 0))
-    println(stockReportFor(items.ageStock(), 1))
+    println(stockReportFor(items.ageFor(1), 1))
 }
 
 internal fun parseToItem(parseMe: String): Item {
@@ -17,5 +17,10 @@ internal fun parseToItem(parseMe: String): Item {
     )
 }
 
-fun GildedRose.ageStock() = this.map { i -> age(i) }
+fun GildedRose.ageFor(daysOut: Int): List<Item> {
+    if (daysOut != 1) throw NotImplementedError("multiple days still to come")
+    return this.map { age(it, daysOut) }
+}
+
+
 
