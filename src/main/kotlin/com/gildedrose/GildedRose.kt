@@ -18,7 +18,7 @@ internal fun parseToItem(parseMe: String): Item {
 }
 
 fun GildedRose.ageFor(daysOut: Int): List<Item> {
-    return this.map { age(it, daysOut) }
+    return this.map { it.ageBy(daysOut) }
 }
 
 
