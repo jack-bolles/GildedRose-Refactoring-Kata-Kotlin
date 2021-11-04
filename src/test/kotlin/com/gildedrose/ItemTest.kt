@@ -1,7 +1,6 @@
 package com.gildedrose
 
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class ItemTest {
@@ -15,14 +14,14 @@ internal class ItemTest {
             Item("Elixir of the Mongoose", 5, 7),
         )
         val dayFourItems = listOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 0, 45),   // <- not calculating cyclically
+            Item("Backstage passes to a TAFKAL80ETC concert", 0, 45),
             Item("Aged Brie", -2, 34),
             Item("Conjured Mana Cake", -3, 0),
             Item("Sulfuras, Hand of Ragnaros", 0, 80),
             Item("Elixir of the Mongoose", 1, 3),
         )
-        Assertions.assertEquals(dayFourItems, dayZeroItems.ageFor(4))
 
+        Assertions.assertEquals(dayFourItems, dayZeroItems.ageFor(4))
     }
 
     @Test

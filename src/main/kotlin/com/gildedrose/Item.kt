@@ -8,20 +8,18 @@ data class Item(val name: String, val sellIn: Int, val quality: Int) {
     object Pass {
         internal fun incrementQuality(item: Item, daysOut: Int): Int {
             val daysToSell = item.sellIn
-            var totalIncrement = 0
-            (1 until daysOut + 1).forEach { i ->
-                totalIncrement += increment(daysToSell - i, item)
+            return (1 until daysOut + 1)
+                .fold(0) { total, e -> total + increment(daysToSell - e, item.quality) }
+        }
+
+        private fun increment(sellIn: Int, startingQuality: Int): Int {
+            return when {
+                sellIn < 0 -> -startingQuality
+                sellIn <= 5 -> 3
+                sellIn <= 10 -> 2
+                else -> 1
             }
-            return totalIncrement
         }
-
-        private fun increment(sellIn: Int, item: Item): Int {
-            return if (sellIn < 0) -item.quality
-            else if (sellIn <= 5) 3
-            else if (sellIn <= 10) 2
-            else 1
-        }
-
     }
 }
 
@@ -43,9 +41,10 @@ private fun calculateQuality(item: Item, daysOut: Int): Int {
     return when {
         item.name == "Backstage passes to a TAFKAL80ETC concert" ->
             boundedQuality(item.quality + Item.Pass.incrementQuality(item, daysOut))
-
-        item.name == "Sulfuras, Hand of Ragnaros" -> item.quality
-        item.name == "Aged Brie" -> boundedQuality(item.quality + daysOut)
+        item.name == "Sulfuras, Hand of Ragnaros" ->
+            item.quality
+        item.name == "Aged Brie" ->
+            boundedQuality(item.quality + daysOut)
         item.name.startsWith("Conjured") ->
             boundedQuality(item.quality + -2 * daysOut)
         else -> boundedQuality(item.quality + -1 * daysOut)
